@@ -1,0 +1,28 @@
+{% if request.user.is_authenticated %}
+<p>{{request.user}}</p>
+<form action="{% url 'logout' %}" method="post">
+ {% csrf_token %}
+ <input type="submit" value="ログアウト">
+</form>
+{% else %}
+<a href="{% url 'login' %}">ログイン</a>
+{% endif %}
+
+<h1>タスクリスト</h1>
+<h2>{{programing}}</h2>
+<a href="{% url 'create-task' %}">タスクの追加</a>
+<table>
+ <tr>
+   <th>タスク</th>
+ </tr>
+  {% for task in tasks %}
+  <tr>
+   <td>{{task.title}}</td>
+   <td><a href="{% url 'task' task.id%}">確認</a>
+    <a href="{% url 'edit-task' task.id%}">編集</a>
+    <a href="{% url 'delete-task' task.id%}">削除</a>
+   </td>
+  </tr>
+  {% endfor %}
+
+</table>
