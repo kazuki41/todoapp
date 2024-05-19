@@ -11,6 +11,12 @@
 <h1>タスクリスト</h1>
 <h2>{{programing}}</h2>
 <a href="{% url 'create-task' %}">タスクの追加</a>
+
+<form method="GET">
+<input type="text" name="search" value="{{search}}">
+<input type="submit" value="検索">
+</form>
+
 <table>
  <tr>
    <th>タスク</th>
