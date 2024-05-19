@@ -1,13 +1,5 @@
-{% if request.user.is_authenticated %}
-<p>{{request.user}}</p>
-<form action="{% url 'logout' %}" method="post">
- {% csrf_token %}
- <input type="submit" value="ログアウト">
-</form>
-{% else %}
-<a href="{% url 'login' %}">ログイン</a>
-{% endif %}
-
+{% extends 'todoapp/base.html' %}
+{% block content %}
 <h1>タスクリスト</h1>
 <h2>{{programing}}</h2>
 <a href="{% url 'create-task' %}">タスクの追加</a>
@@ -30,5 +22,17 @@
    </td>
   </tr>
   {% endfor %}
-
 </table>
+
+<div class="cont01">
+  {% if request.user.is_authenticated %}
+  <p>{{request.user}}</p>
+  <form action="{% url 'logout' %}" method="post">
+   {% csrf_token %}
+   <input type="submit" value="ログアウト">
+  </form>
+  {% else %}
+  <a href="{% url 'login' %}">ログイン</a>
+  {% endif %}
+</div>
+{% endblock content %}
